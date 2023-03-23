@@ -35,3 +35,11 @@ def train_val_ds(dataset,split=0.2):
 datasets = train_val_ds(img_dataset)
 ds_train = datasets['train']
 ds_val = datasets['val']
+
+# some dataset methods
+
+dataset.classes
+dataset.class_to_idx
+dataset.imgs
+
+
