@@ -15,7 +15,18 @@ len_val=len_img-len_train
 # Split Pytorch tensor
 ds_train,ds_val = random_split(img_dataset,
                              [len_train,len_val]) # random split 80/20
+                          
+                          
+# Define the following transformations for the training dataset
+tr_transf = transforms.Compose([transforms.Resize((40,40)),
+                                transforms.ToTensor()])
 
+# For the validation dataset, we don't need any augmentation; simply convert images into tensors
+val_transf = transforms.Compose([transforms.ToTensor()])
+
+# After defining the transformations, overwrite the transform functions of train_ts, val_ts
+ds_train.transform=tr_transf
+ds_val.transform=val_transf
 
 # and 
 
