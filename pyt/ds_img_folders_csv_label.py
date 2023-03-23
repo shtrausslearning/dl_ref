@@ -1,3 +1,5 @@
+''' Custom Dataset '''
+
 # images stored in folders
 
 # data located in folder: data_dir, has subfolders train , valid
@@ -43,3 +45,12 @@ class pytorch_data(Dataset):
         image = self.transform(image) 
         
         return image, self.labels[idx]
+    
+    
+# define transformation that converts a PIL image into PyTorch tensors
+import torchvision.transforms as transforms 
+data_transformer = transforms.Compose([transforms.ToTensor(),
+                                       transforms.Resize((46,46))])
+
+# Define an object of the custom dataset for the train folder
+img_dataset = pytorch_data(data_dir, data_transformer, "train") 
